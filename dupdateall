@@ -1,0 +1,24 @@
+#!/bin/sh
+
+. "$(dirname $0)/util.sh"
+
+echo "> Updating $NUM_COMPOSE_ENVS Compose Environments"
+
+storeIFS
+
+for envName in $COMPOSE_FILE_LIST; do
+  INDEX_COUNT=$((INDEX_COUNT+1))
+  echo $INDEX_COUNT - Updating $envName...
+
+  restoreIFS
+  composeOperation $envName down
+  composeOperation $envName pull
+  composeOperation $envName up
+  storeIFS
+
+  if [ ! "$INDEX_COUNT" -eq "$NUM_COMPOSE_ENVS" ]; then
+      echo =======================================================
+  fi
+done
+
+restoreIFS

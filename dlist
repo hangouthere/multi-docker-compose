@@ -1,0 +1,37 @@
+#!/bin/sh
+
+. "$(dirname $0)/util.sh"
+
+help1="> ${txtBold}${txtGreen}Found $NUM_COMPOSE_ENVS Compose Environment(s):${colorReset}"
+
+help2=$(cat <<endHelp2
+${txtBold}> Available Commands:${colorReset}
+    ddn ${txtGrey}<envName>${colorReset} - Take an Environment Down
+    dup ${txtGrey}<envName>${colorReset} - Bring an Environment Up
+    dpull ${txtGrey}<envName>${colorReset} - Pull new Images for an Environment
+    dupdate ${txtGrey}<envName>${colorReset} - Performs a pull, down, and up on an Environment
+    ddnall - Take Down *all* Environments
+    dupall - Start up *all* Environments
+    dpullall - Pull new Images for *all* Environments
+    dupdateall - Performs a pull, down, and up on *all* Environments
+    dlist - This script, shows known Compose Environments, and help
+
+${txtBold}> Example Usage:${colorReset}
+    dpull ${txtGrey}web${colorReset}
+    dupdate ${txtGrey}game-servers${colorReset}
+    dupdateall
+    ${txtGrey}COMPOSE_ENV_PATH=~/myComposeEnvs${colorReset} dpullall
+endHelp2
+)
+
+storeIFS
+envOutput=""
+
+for envName in $COMPOSE_FILE_LIST; do
+  INDEX_COUNT=$((INDEX_COUNT+1))
+  envOutput="$envOutput\n    ${txtGrey}($INDEX_COUNT)${colorReset} $envName"
+done
+
+restoreIFS
+
+echo "${help1}${envOutput}\n\n${help2}\n"

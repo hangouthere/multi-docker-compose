@@ -1,0 +1,7 @@
+#!/bin/sh
+
+. "$(dirname $0)/util.sh"
+
+echo "> Starting $NUM_COMPOSE_ENVS Compose Environments..."
+
+iterateEnvsForSingleOp pull "Starting"
