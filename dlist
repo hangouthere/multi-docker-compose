@@ -9,17 +9,19 @@ ${txtBold}> Available Commands:${colorReset}
     ddn ${txtGrey}<envName>${colorReset} - Take an Environment Down
     dup ${txtGrey}<envName>${colorReset} - Bring an Environment Up
     dpull ${txtGrey}<envName>${colorReset} - Pull new Images for an Environment
-    dupdate ${txtGrey}<envName>${colorReset} - Performs a pull, down, and up on an Environment
+    dupgrade ${txtGrey}<envName>${colorReset} - Performs a pull, down, and up on an Environment
     ddnall - Take Down *all* Environments
     dupall - Start up *all* Environments
     dpullall - Pull new Images for *all* Environments
-    dupdateall - Performs a pull, down, and up on *all* Environments
+    dupgradeall - Performs a pull, down, and up on *all* Environments
     dlist - This script, shows known Compose Environments, and help
+    dps - Docker PS, simplified
+    dpsp - Docker PS, simplified, but with Port Mappings
 
 ${txtBold}> Example Usage:${colorReset}
     dpull ${txtGrey}web${colorReset}
-    dupdate ${txtGrey}game-servers${colorReset}
-    dupdateall
+    dupgrade ${txtGrey}game-servers${colorReset}
+    dupgradeall
     ${txtGrey}COMPOSE_ENV_PATH=~/myComposeEnvs${colorReset} dpullall
 endHelp2
 )
