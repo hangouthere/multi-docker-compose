@@ -29,6 +29,10 @@ composeOperation() {
         operation="up -d"
     fi
 
+    if [ "logs" = "$operation" ]; then
+        operation="logs -f"
+    fi
+
     getComposeFilePath composeFile $envName
     checkComposeFile $composeFile
 
